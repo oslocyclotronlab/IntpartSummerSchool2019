@@ -119,16 +119,35 @@ if __name__ == "__main__":
     gsfE1 = gsf[:, 1]
     gsfM1 = gsf[:, 2]
 
-
     # REMEMBER that the TALYS functions are given in mb/MeV (Goriely's tables)
     # so we must convert it (simple factor)
     factor_from_mb = 8.6737E-08   # const. factor in mb^(-1) MeV^(-2)
 
+    fE1 = log_interp1d(Egsf, gsfE1, fill_value="extrapolate")
+    fM1 = log_interp1d(Egsf, gsfM1, fill_value="extrapolate")
+
+    Egsf_out = np.arange(0.1, 30.1, 0.1)
+
+
     header = f" Z=  {Z} A=  {A}\n" + "  U[MeV]  fE1[mb/MeV]"
-    gsfE1 /= factor_from_mb
-    np.savetxt(fn_gsf_outE1, np.c_[Egsf, gsfE1],
+    # gsfE1 /= factor_from_mb
+    np.savetxt(fn_gsf_outE1, np.c_[Egsf_out, fE1(Egsf_out)/factor_from_mb],
                fmt="%9.3f%12.3E", header=header)
-    gsfM1 /= factor_from_mb
-    np.savetxt(fn_gsf_outM1, np.c_[Egsf, gsfM1],
+    # gsfM1 /= factor_from_mb
+    np.savetxt(fn_gsf_outM1, np.c_[Egsf_out, fM1(Egsf_out)/factor_from_mb],
                fmt="%9.3f%12.3E", header=header)
 
+    fig, ax = plt.subplots()
+    ax.semilogy(Egsf_out, fE1(Egsf_out), label="E1")
+    ax.semilogy(Egsf_out, fM1(Egsf_out), "--", label="M1")
+
+    try:
+        talys_out = np.loadtxt("data/talys_output.txt", skiprows=2)
+        ax.plot(talys_out[:, 0], talys_out[:, 1], "-.",
+                label="talys_output M1")
+        ax.plot(talys_out[:, 0], talys_out[:, 2], "--",
+                label="talys_output E1")
+    except OSError:
+        pass
+    ax.legend()
+    plt.show()
