@@ -1,0 +1,645 @@
+%\documentclass[handout]{beamer}
+
+% \documentclass{beamer}% for teacher version
+\documentclass[handout]{beamer}% for student version
+
+%\usepackage{pgfpages}
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
+
+\usepackage{etex}
+ 
+ 
+%\usepackage[ngerman, american, british]{babel} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} %%% latin input
+%\DeclareUnicodeCharacter{00A0}{ }
+
+%\usepackage{default}
+\usetheme{Warsaw}
+%\usepackage{authblk}
+\usepackage{multicol}
+
+\usepackage{subcaption}
+%\usepackage[style=numeric,backend=biber]{biblatex}
+% %\usepackage[style=numeric]{biblatex}
+%\addbibresource{../bib.bib}
+%\AtEveryCitekey{%
+%\clearfield{title}%
+%\clearfield{pagetotal}%
+%}
+% Make bracketized
+%\renewcommand*{\thefootnote}{[\arabic{footnote}]}
+%\makeatletter
+% Remove superscript for footnotemark
+%\def\@makefnmark{\hbox{{\normalfont\@thefnmark}}}
+% Allow space to precede the footnote
+%\usepackage{etoolbox}
+%\patchcmd{\blx@mkbibfootnote}{\unspace}{}{}
+%\makeatother
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+
+\usepackage{textpos}
+\usepackage[percent]{overpic}
+
+\newcommand{\PreLim}
+{\begin{tikzpicture}
+% \node [opacity=0.1,rotate around={45:(0,0)}] (0,0) {\scalebox{2.0}{\textcolor{green}{Preliminary}}};
+\end{tikzpicture}}
+\newcommand{\PreLimP}{\put (50,0) {\PreLim}}
+  
+%\usepackage[printwatermark]{xwatermark}
+%\newwatermark*[allpages,color=red!50,angle=45,scale=2,xpos=0,ypos=0]{DRAFT}
+
+%\usepackage{struktex} %%% create structograms
+\usepackage{booktabs} %%% scientific publication style tables
+\usepackage{empheq}   %%% for boxed equations and alike
+\usepackage{xcolor}   %%% for colored text and formulae
+\usepackage{amsmath}  %%% math symbols needed
+\usepackage{amsfonts} %%% math fonts needed
+\usepackage{amssymb}  %%% maths symbols needed 
+\usepackage{amsthm}   %%% theorem environments
+%\usepackage{dsfont}   %%% for blackboard numbers and characters 
+%\usepackage{mathrsfs} %%% fonts when speaking e.g. about Lagrangian density
+%\usepackage{mathdots/mathdots}
+\usepackage{pdfpages}
+\usepackage{multirow} %%% merge rows in a table
+
+% Default graphics paths
+\graphicspath{{figs/}}
+
+%use of ps ticks
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\usepackage{pgf,tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc}
+\usetikzlibrary{tikzmark} % remember position for later
+
+\ifx\du\undefined
+  \newlength{\du}
+\fi
+\setlength{\du}{15\unitlength}
+
+%\usepackage{fancybox} %%% more types of boxes 
+
+%\usepackage[pdftex]{graphicx}       %%% CUSTOMIZATION: include all pictures
+%\usepackage[draft]{graphicx} %%% choose draft option for faster compiling without pictures
+%\graphicspath{{Figures/}}      %%% all pictures will reside there and in subdirs
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% acronym and notation section
+%%% comment/delete this section, if you do not want to use these
+%\usepackage[toc,style=list,acronym=true]{glossary} %%% this package has to go AFTER the hyperref package!
+%\setacronymnamefmt{\gloshort}
+%\setacronymdescfmt{\glolong}
+%\input{Misc/acronyms-definitions.tex}
+%\makeacronym
+%
+%\newglossarytype{notation}{not}{ntn}[style=list]
+%\newcommand{\notationname}{Notation}
+%\setglossary{type=notation,glsnumformat=ignore,glodelim={.}}
+%\makenotation
+%%% end of acronuyms and notation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\FourQuad[4]{%
+    \begin{minipage}[b][.35\textheight][t]{.47\textwidth}#1\end{minipage}\vrule  \hfill%
+    \begin{minipage}[b][.35\textheight][t]{.47\textwidth}#2\end{minipage} \\[0.25em]
+    \hrule \hspace{0.001cm} \\[0.25em]
+    \begin{minipage}[b][.35\textheight][t]{.47\textwidth}#3\end{minipage}\vrule \hfill
+    \begin{minipage}[b][.35\textheight][t]{.47\textwidth}#4\end{minipage}%
+    }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Selection of the fonts!! 
+\usepackage[T1]{fontenc}
+%\usepackage{helvet}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment<>{varblock}[2][.9\textwidth]{%
+  \setlength{\textwidth}{#1}
+  \begin{actionenv}#3%
+    \def\insertblocktitle{#2}%
+    \par%
+    \usebeamertemplate{block begin}}
+  {\par%
+    \usebeamertemplate{block end}%
+  \end{actionenv}}
+
+
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,shapes}
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+
+% By default all math in TikZ nodes are set in inline mode. Change this to
+% displaystyle so that we don't get small fractions.
+\everymath{\displaystyle}
+
+\setbeamercovered{transparent}
+
+
+
+\title[Talys examples -- 1 (Friday)] % (optional, only for long titles)
+{Introduction into the usage of TALYS}
+\subtitle{Oslo-Berkeley-Stellenbosch-iThemba Summer School 2019}
+
+\author[F. Zeiser]{Fabio Zeiser, UiO}
+
+\date{29th November 2019} % (optional)
+%{ND2016, Brugge}
+%\subject{Computer Science}r}
+
+
+
+%%%%%%%%%%%%%%%
+%\usepackage[left=1.00in, right=1.00in, top=1.00in, bottom=1.00in]{geometry}
+\usepackage{xpatch}
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,skins,listings}
+
+\tcbset{
+        enhanced,
+        boxrule=0.0pt,
+        %fonttitle=\bfseries
+       }
+
+\newtcblisting{bashcodebg}[1][]{
+    listing engine=minted,
+    colback=bashcodebg,
+    colframe=black!70,
+    listing only,
+    minted style=colorful,
+    minted language=bash,
+    minted options={linenos=true,numbersep=3mm,texcl=true,breaklines,#1},
+    left=5mm,enhanced,
+    overlay={\begin{tcbclipinterior}\fill[black!25] (frame.south west)
+            rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}
+}
+
+\newtcblisting{bashcodebg2}[1][]{
+    listing engine=minted,
+    colback=bashcodebg,
+    colframe=black!70,
+    listing only,
+    minted style=colorful,
+    minted language=bash,
+    minted options={linenos=false,numbersep=3mm,texcl=false,#1,xrightmargin=0.5\textwidth},
+    left=0mm,enhanced,
+    %overlay={\begin{tcbclipinterior}\fill[black!25] (frame.south west)
+    %        rectangle (frame.north west);\end{tcbclipinterior}}
+}
+
+\definecolor{bashcodebg}{rgb}{0.85,0.85,0.85}
+
+%%%%%%
+
+\newlength{\mintedfboxsep}
+\setlength{\mintedfboxsep}{0.2pt}
+
+\newmintinline{python}{python3, framesep=0.1pt,bgcolor=bashcodebg}
+
+\makeatletter
+\newlength{\fboxrsep}
+\setlength{\fboxrsep}{\fboxsep}
+
+\newlength{\fboxlsep}
+\setlength{\fboxlsep}{\fboxsep}
+
+\newlength{\fboxtsep}
+\setlength{\fboxtsep}{\fboxsep}
+
+\newlength{\fboxbsep}
+\setlength{\fboxbsep}{\mintedfboxsep}
+
+\xpatchcmd{\minted@inputpyg@inline}{%
+  \colorbox%
+}{%
+  \long\def\color@b@x##1##2##3%
+  {\leavevmode
+    \setbox\z@\hbox{\kern\fboxlsep{\set@color##3}\kern\fboxrsep}%
+    \dimen@\ht\z@\advance\dimen@\fboxtsep\ht\z@\dimen@
+    \dimen@\dp\z@\advance\dimen@\fboxbsep\dp\z@\dimen@
+    {##1{##2\color@block{\wd\z@}{\ht\z@}{\dp\z@}\box\z@}}}%
+  \colorbox%
+}{\typeout{Success}}{\typeout{Failure}}
+\makeatother
+
+%%%%%%%
+
+
+
+
+
+%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%\begingroup
+%\setbeamercolor{background canvas}{bg=gray!30}
+
+\begin{frame}[fragile]{Basic example -- 1}
+
+% \begin{frame}[fragile]
+% \frametitle{Title}
+% \framesubtitle{Subtitle}
+
+Most simple input:\\
+Requires only 4 keywords
+
+ \begin{minipage}{0.5\textwidth}
+\begin{bashcodebg}
+\## Simple example code
+projectile n
+element    Fe
+mass       56
+energy     14.
+\end{bashcodebg}
+\end{minipage}
+\newline
+\newline
+Run the input:\\
+\pythoninline{talys <input> output}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Basic example -- 1}
+
+% \begin{frame}[fragile]
+% \frametitle{Title}
+% \framesubtitle{Subtitle}
+
+Output Structure:\\
+
+\begin{itemize}
+  \item Version number
+  \item User input (print file again)
+  \item comprehensive keyword(parameter) list 
+  \item Calculated output (depends on output keywords)
+  \begin{itemize}
+    \item Basic reaction parameters (Energy, channels, \dots)
+    \item Cross Sections summary: per channel, residual nucleus, ...
+    \pause
+    \item Discrete Levels \& Spins included 
+    \item Angular distributions
+    \item Gamma-ray strength function
+    \item Level desity
+    \item [...]
+  \end{itemize}
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Task 2: $^{208}\mathrm{Pb}$}
+
+Tasks: $^{208}\mathrm{Pb}$
+\begin{itemize}
+  \item Calculate (n,$\gamma$), (n,n$^\prime$), (n,2n) cross-sections
+  \item Incident energy range: 0 - 20 MeV
+  \item Visualize and compare to experimental data and evaluations
+\end{itemize}
+
+\quad
+\pause
+
+Tips:
+\begin{itemize}
+  \item Create a folder for each input file
+  \item Use a file or grid with \pythoninline{energy}, eg. \pythoninline{energy n0-20.grid}\footnote{Computation time with this option for me: 35 sec}
+  \item Extract cross-sections with \pythoninline{fileresidual y}
+  \item Comapare to experiental cross-sections from \textit{EXFOR} (see next slide(s))
+  \item Compare to evaluated cross-sections from \textit{JENDL} and \textit{ENDFB}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Output -- Example 2}
+
+Cross-sections in rpZZZAAA.tot\\
+For $^{208}\mathrm{Pb}$(n,$\gamma$) we look at 
+\pythoninline{rp082209.tot}
+
+\begin{scriptsize}
+\begin{columns}
+\begin{column}{.7\textwidth}
+\begin{bashcodebg}
+\## n + 208Pb: Production of 209Pb - Total
+# Q-value    = 3.93737E+00 mass= 208.981090
+# E-threshold= 0.00000E+00
+# # energies =    78
+#     E          xs
+ 1.00000E-11 1.15688E+04
+ 2.53000E-08 2.30000E+02
+     ...         ...
+\end{bashcodebg}
+\end{column}
+
+\begin{column}{.29\textwidth}
+\vspace{\baselineskip}\linebreak
+$\bf E$ in MeV, $\bf xs (\sigma)$ in mb 
+\end{column}
+\end{columns}
+\end{scriptsize}
+
+\quad \\
+
+For $\langle \sigma v \rangle$ we look at 
+\pythoninline{astrorate.g}
+
+\begin{scriptsize}
+\begin{bashcodebg}
+\## Reaction rate for 208Pb(n,g) at <E>= 0.03000 MeV 
+              # (Excited States Contribution : n)
+#    T       Rate       MACS
+  0.3481 3.37251E+04 2.33280E-01
+\end{bashcodebg}
+\end{scriptsize}
+\textbf{MACS} again in mb
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Discussion}
+
+% Discussion: MACS for $^{208}\mathrm{Pb}$(n,$\gamma$) with $kT$=30 keV
+% In one of the previous slides you were asked to calculate the MACS ($\langle \sigma v \rangle$) with \pythoninline{astroE 0.03}, where $kt=0.03\,\mathrm{MeV}$ and compare to \textit{KADONIS}.\\
+
+
+% The comparison of the results from Talys to KADONIS is difficult in this case. Why?\\
+
+
+% Tip: You may plot the results from Talys on a loglog scale together with experimental data and a Maxwellian with $kT$=30 keV.
+
+% % \begin{figure}[tbh]
+% % \centering
+% % \includegraphics[width=\linewidth]{code/ex2}
+% % \caption{$^{208}\mathrm{Pb}$(n,$\gamma$) compared to experiment}
+% % %\label{fig:EnergyRegionLevelD}
+% % \end{figure}
+
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{(n,$\gamma$) cross-sections vs experiment}
+
+\begin{figure}[tbh]
+\centering
+\includegraphics[width=\linewidth]{code/ex2}
+\caption{$^{208}\mathrm{Pb}$(n,$\gamma$) compared to experiment}
+%\label{fig:EnergyRegionLevelD}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{How to retrieve data from EXFOR (experiments) 1 ?}
+
+\begin{figure}[b]
+	\centering
+	\makebox[\linewidth][c]{%
+	\begin{subfigure}{.7\linewidth}
+		\hspace{1.5cm}
+		\includegraphics[width=1\textwidth]{figs/exfor}
+	\end{subfigure}%
+	\quad
+	\begin{subfigure}{.7\linewidth}
+		\includegraphics[width=1\textwidth]{figs/exfor-select}
+	\end{subfigure}%
+	}
+\end{figure}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{How to retrieve data from EXFOR (experiments) 2 ?}
+	
+	\begin{figure}[b]
+		\centering
+		\makebox[\linewidth][c]{%
+			\hspace{1.5cm}
+			\begin{subfigure}{.7\linewidth}
+				\includegraphics[width=1\textwidth]{figs/exfor-data1}
+			\end{subfigure}%
+			\quad
+			\begin{subfigure}{.7\linewidth}
+				\includegraphics[width=1\textwidth]{figs/exfor-data2}
+			\end{subfigure}%
+		}
+	\end{figure}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{How to retrieve data from ENDF(B) (evaluations)?}
+	
+	\begin{figure}[b]
+		\centering
+		\makebox[\linewidth][c]{%
+			\begin{subfigure}{.5\linewidth}
+				\includegraphics[width=1\textwidth]{figs/endf}
+			\end{subfigure}%
+			\quad
+			\begin{subfigure}{.5\linewidth}
+				\includegraphics[width=1\textwidth]{figs/endfb-data}
+			\end{subfigure}%
+		}
+		\makebox[\linewidth][c]{%
+			\begin{subfigure}{.5\linewidth}
+				\includegraphics[width=1\textwidth]{figs/endf-select}
+			\end{subfigure}%
+			\quad
+			\makebox[.5\linewidth][c]{}
+		}
+	\end{figure}
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Effect of different level density models}
+
+Task:
+\begin{itemize}
+  \item Investigate effect of CT+FG (ld 1; default), BSFG (ld 2), HF (ld 5)
+  \item Plot the total LD for the different models
+  \item Compare (plot) $\sigma_{(\mathrm{n},\gamma)}$
+\end{itemize}
+Output level density with \pythoninline{outdensity y}\\
+
+% WORKAROUND
+\begingroup % WORKAROUND
+\catcode`\!=\active   % WORKAROUND
+\def!#1!{\colorbox{yellow}{#1}}  % WORKAROUND
+\def¤#1¤{\colorbox{black!30}{[...]}}  % WORKAROUND
+\begin{tiny}
+\begin{bashcodebg}
+\##
+# General
+#
+projectile n
+element pb
+mass 208
+energy energies
+#
+# Parameters
+# 
+# default ldmodel = 1
+!ldmodel 1!
+#
+# Output
+#
+fileresidual y
+outdensity y
+\end{bashcodebg}
+\end{tiny}
+\endgroup
+
+\end{frame}
+
+%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Effect of different level density models}
+
+Investigation of the output file $\rightarrow$ Find LD
+% WORKAROUND
+\begingroup % WORKAROUND
+\catcode`\!=\active   % WORKAROUND
+\def!#1!{\colorbox{yellow}{#1}}  % WORKAROUND
+\def¤#1¤{\colorbox{black!30}{[...]}}  % WORKAROUND
+\begin{tiny}
+\begin{bashcodebg}[escapeinside=||]
+|¤¤|
+Level density parameters for Z= 82 N=127 |!(209Pb)!|
+
+Model: Gilbert-Cameron          
+Collective enhancement: no
+
+a(Sn)           :   9.02372
+Experimental D0 :         400000.00 eV +-     80000.00000
+Theoretical D0  :         612808.44 eV
+|¤¤|
+Matching Ex     :   6.28452
+Temperature     :   0.75450
+E0              :   0.92010
+Adj. pair shift :   0.00000
+Discrete sigma  :   3.53026
+Sigma (Sn)      :   4.65249
+
+Level density |!per parity!| for ground state
+(Total level density also per parity)
+
+   Ex     a    sigma   |!total!|   JP=  0.5  JP=  1.5  JP=  2.5  JP=  3.5  JP=  4.5  JP=  5.5  JP=  6.5  JP=  7.5  JP=  8.5
+
+  0.25  7.661  3.530 |!2.726E-01!| 2.102E-02 3.727E-02 4.574E-02 4.605E-02 4.012E-02 3.097E-02 2.144E-02 1.343E-02 7.637E-03
+|¤¤|
+\end{bashcodebg}
+\end{tiny}
+\endgroup
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}{Effect of different level density models}
+
+\begin{figure}[tbh]
+\centering
+\includegraphics[width=0.9\linewidth]{code/ex2_LD}
+\caption{$^{208}\mathrm{Pb}$(n,$\gamma$) for different LD models}
+%\label{fig:EnergyRegionLevelD}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%
+
+\begin{frame}{Effect of $\gamma$SF}
+
+\begin{figure}[tbh]
+\centering
+\includegraphics[width=0.9\linewidth]{code/ex2_xsgSF}
+\caption{$^{208}\mathrm{Pb}$(n,$\gamma$) shifting the energy centroid of the GDR}
+%\label{fig:EnergyRegionLevelD}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]{Effect of $\gamma$SF}
+
+% Investigation of the output file: Default; output with \pythoninline{outgamma y}
+
+% \begin{minipage}{1.2\textwidth}
+% % WORKAROUND
+% \begingroup % WORKAROUND
+% \catcode`\!=\active   % WORKAROUND
+% \def!#1!{\colorbox{yellow}{#1}}  % WORKAROUND
+% \def¤#1¤{\colorbox{black!30}{[...]}}  % WORKAROUND
+% \begin{tiny}
+% \begin{bashcodebg}[escapeinside=||]
+% |¤¤|
+% #### GAMMA STRENGTH FUNCTIONS, TRANSMISSION COEFFICIENTS AND CROSS SECTIONS ######
+
+%  Gamma-ray information for Z= 82 N=127 (209Pb) 
+
+%  S-wave strength function parameters:
+
+%  Exp. total radiative width=   0.06000 eV +/- 0.00000 Theor. total radiative width=        0.07018 eV
+%  Exp. D0                   = 400000.00 eV +/-80000.00 Theor. D0                   =   612808.43750 eV
+%  Theor. S-wave strength f. =   0.00115E-4
+%  Normalization factor      =   0.85495
+
+%  Gamma-ray strength function model for E1: Kopecky-Uhl              
+
+%  Gamma-ray strength function model for M1: RIPL-2                   
+
+%  Normalized gamma-ray strength functions and transmission coefficients for l= 1
+
+%  Giant resonance parameters :
+
+%  sigma0(M1) =   0.909       sigma0(E1) = 591.220    PR: sigma0(M1) =   0.000       sigma0(E1) =   0.000
+%       E(M1) =   6.909            E(E1) =  13.714    PR:      E(M1) =   0.000            E(E1) =   0.000
+%   gamma(M1) =   4.000        gamma(E1) =   3.863    PR:  gamma(M1) =   0.000        gamma(E1) =   0.000
+%       k(M1) =   8.67373E-08      k(E1) =   8.67373E-08
+
+%      E       f(M1)        f(E1)        T(M1)        T(E1)
+
+%    0.001  0.00000E+00  1.28340E-08  0.00000E+00  5.99831E-16
+%    0.002  9.46841E-13  1.28312E-08  4.75934E-20  4.79894E-15
+% |¤¤|
+% \end{bashcodebg}
+% \end{tiny}
+% \endgroup
+% \end{minipage}
+
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%
+
+
+
+\end{document}
