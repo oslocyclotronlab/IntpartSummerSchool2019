@@ -1,0 +1,64 @@
+#subident= 21438028
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.1450e+02    0.3050e+01    0.4575e+00    0.0000e+00
+#subident= 11450039
+#relxs(*),xsratio(R),DA lab/cm(L/C),E-spec(E),notallcols(*):   D*
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.1000e+01    0.2000e+01    0.0000e+00    0.0000e+00
+#subident= 30074007
+#relxs(*),xsratio(R),DA lab/cm(L/C),E-spec(E),notallcols(*):    *
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.1340e+02    0.1320e+01    0.7000e-01    0.0000e+00
+    0.1360e+02    0.1310e+01    0.7000e-01    0.0000e+00
+    0.1390e+02    0.1300e+01    0.7000e-01    0.0000e+00
+    0.1410e+02    0.1190e+01    0.6000e-01    0.0000e+00
+    0.1430e+02    0.1130e+01    0.6000e-01    0.0000e+00
+    0.1450e+02    0.1110e+01    0.5000e-01    0.0000e+00
+    0.1500e+02    0.1030e+01    0.5000e-01    0.0000e+00
+#subident= 30067017
+#relxs(*),xsratio(R),DA lab/cm(L/C),E-spec(E),notallcols(*):    *
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.1470e+02    0.1000e+01    0.2000e+00    0.0000e+00
+#subident= 21513002
+#relxs(*),xsratio(R),DA lab/cm(L/C),E-spec(E),notallcols(*):   D 
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.2530e-07    0.1800e+02    0.1000e+02    0.0000e+00
+#subident= 40244040
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.2000e+00    0.7500e+01    0.3800e+01    0.3000e-02
+#subident= 40244082
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.2000e+00    0.7500e+01    0.3800e+01    0.3000e-01
+#subident= 40244019
+#relxs(*),xsratio(R),DA lab/cm(L/C),E-spec(E),notallcols(*):    *
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.2700e+01    0.1100e+04    0.5000e+03    0.0000e+00
+#subident= 40244103
+#relxs(*),xsratio(R),DA lab/cm(L/C),E-spec(E),notallcols(*):    *
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.2700e+01    0.1100e+01    0.5000e+00    0.0000e+00
+    0.4000e+01    0.5000e+00    0.2500e+00    0.0000e+00
+#subident= 10193006
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.1400e+02    0.9940e+00    0.1988e+00    0.0000e+00
+#subident= 10226002
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.7200e+01    0.8310e+00    0.1246e+00    0.0000e+00
+    0.8200e+01    0.1243e+01    0.1865e+00    0.0000e+00
+    0.9200e+01    0.1699e+01    0.2548e+00    0.0000e+00
+    0.1020e+02    0.1786e+01    0.2679e+00    0.0000e+00
+    0.1120e+02    0.1879e+01    0.2818e+00    0.0000e+00
+    0.1220e+02    0.1520e+01    0.2280e+00    0.0000e+00
+    0.1320e+02    0.1201e+01    0.1801e+00    0.0000e+00
+    0.1470e+02    0.9430e+00    0.1414e+00    0.0000e+00
+#subident= 30079042
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.2400e-01    0.6500e+01    0.1000e+01    0.0000e+00
+#subident= 11507102
+#relxs(*),xsratio(R),DA lab/cm(L/C),E-spec(E),notallcols(*):   D*
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.2530e-07    0.0000e+00    0.3000e+02    0.0000e+00
+#subident= 12632003
+#relxs(*),xsratio(R),DA lab/cm(L/C),E-spec(E),notallcols(*):   D 
+#E_in [MeV]      XS [mb]       DXS [mb]       DE_in [MeV]
+    0.2530e-07    0.4870e+00    0.3000e-01    0.0000e+00
