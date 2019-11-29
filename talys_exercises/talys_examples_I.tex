@@ -39,7 +39,8 @@
 %\makeatother
 \setbeamertemplate{navigation symbols}{}%remove navigation symbols
 
-
+\usepackage{dirtree}
+	
 \usepackage{textpos}
 \usepackage[percent]{overpic}
 
@@ -252,10 +253,13 @@
 % \frametitle{Title}
 % \framesubtitle{Subtitle}
 
+\begin{columns}
+	\begin{column}{.5\textwidth}
+		
 Most simple input:\\
 Requires only 4 keywords
 
- \begin{minipage}{0.5\textwidth}
+\begin{minipage}{\textwidth}
 \begin{bashcodebg}
 \## Simple example code
 projectile n
@@ -268,6 +272,20 @@ energy     14.
 \newline
 Run the input:\\
 \pythoninline{talys <input> output}
+
+\end{column}
+\quad
+\begin{column}{.5\textwidth}
+
+Tip:\\
+Setup your folder like this\\
+\dirtree{%
+	.1 /path/tp/ex1.
+	.2 input.
+	.2 output (will be created).
+}
+\end{column}
+\end{columns}
 
 
 \end{frame}
@@ -320,7 +338,7 @@ Tips:
 \begin{itemize}
   \item Create a folder for each input file
   \item Use a file or grid with \pythoninline{energy}, eg. \pythoninline{energy n0-20.grid}\footnote{Computation time with this option for me: 35 sec}
-  \item Extract cross-sections with \pythoninline{fileresidual y}
+  \item Extract cross-sections with \pythoninline{fileresidual y} (since talys 1.9 this is default)
   \item Comapare to experiental cross-sections from \textit{EXFOR} (see next slide(s))
   \item Compare to evaluated cross-sections from \textit{JENDL} and \textit{ENDFB}
 \end{itemize}
@@ -354,21 +372,6 @@ $\bf E$ in MeV, $\bf xs (\sigma)$ in mb
 \end{column}
 \end{columns}
 \end{scriptsize}
-
-\quad \\
-
-For $\langle \sigma v \rangle$ we look at 
-\pythoninline{astrorate.g}
-
-\begin{scriptsize}
-\begin{bashcodebg}
-\## Reaction rate for 208Pb(n,g) at <E>= 0.03000 MeV 
-              # (Excited States Contribution : n)
-#    T       Rate       MACS
-  0.3481 3.37251E+04 2.33280E-01
-\end{bashcodebg}
-\end{scriptsize}
-\textbf{MACS} again in mb
 
 \end{frame}
 
