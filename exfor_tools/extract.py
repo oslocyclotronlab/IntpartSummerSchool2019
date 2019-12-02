@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import itertools
 import pandas as pd
 import os
 
@@ -8,22 +9,29 @@ names = ["x", "dx", "y", "dy", "#1",
 data = pd.read_fwf("X4_exp.txt", skiprows=11, skipfooter=2, names=names)
 data.drop(columns=["#1", "#2"])
 
-
 df = data.groupby("year, auth")
-fig, ax = plt.subplots()
 
 outdir = "split"
-os.mkdir(outdir)
+try:
+    os.mkdir(outdir)
+except FileExistsError:
+    pass
 
-for name, group in df:
+nfigs = int(len(df)/5)
+fig, axes = plt.subplots(nfigs, 1)
+marker = itertools.cycle(('>', '+', '<', 'o', '*'))
+for i, (name, group) in enumerate(df):
+    ax = axes[i % nfigs]
     ax.errorbar(group["x"], group["y"], yerr=group["dy"], label=name, fmt="o",
-                alpha=0.5, markerfacecolor="None")
+                alpha=0.5, markerfacecolor="None",
+                markersize=2, marker=next(marker))
     outname = name.replace(" ", "_")
     group.to_csv(f"{outdir}/{outname}", sep="\t")
 
-ax.set_yscale("log")
-ax.set_xlim(0, 20)
-ax.set_ylim(1e0, 1e2)
-ax.legend()
+
+    ax.set_yscale("log")
+    ax.set_xlim(0, 20)
+    ax.set_ylim(1e0, 1e2)
+    ax.legend()
 
 plt.show()
