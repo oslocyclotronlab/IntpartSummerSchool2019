@@ -4,13 +4,36 @@ import itertools
 import pandas as pd
 import os
 
-widths = np.array([0, 15, 28, 41, 54, 57, 82, 85, 95, 104])
-widths = np.diff(widths)
-names = ["x", "dx", "y", "dy", "#1",
-         "year, auth", "#2", "id", "com"]
-data = pd.read_fwf("X4_exp.txt", width=widths,
-                   skiprows=11, skipfooter=2, names=names)
-data.drop(columns=["#1", "#2"])
+def read_exfor(fname):
+    widths = np.array([0, 15, 28, 41, 54, 57, 82, 85, 95, 104])
+    widths = np.diff(widths)
+    names = ["x", "dx", "y", "dy", "#1",
+             "year, auth", "#2", "id", "com"]
+
+    dtype = ""
+    for i, w in enumerate(widths):
+        if i < 4:
+            dtype += f"float,"
+        else:
+            dtype += f"S{w},"
+    dtype = dtype[:-1]
+
+    data = np.genfromtxt("X4_exp.txt", delimiter=widths,
+                         skip_header=11, skip_footer=2,
+                         dtype=dtype, names=names, deletechars="",
+                         comments=None)
+
+    a = [list(item) for item in data]
+    data = pd.DataFrame(a, columns=names)
+    data = data.drop(columns=["#1", "#2"])
+
+    data["year, auth"] = data["year, auth"].str.decode('utf-8')
+    data["com"] = data["com"].str.decode('utf-8')
+    data["id"] = data["id"].astype(int)
+    return data
+
+
+data = read_exfor("X4_exp.txt")
 
 df = data.groupby("year, auth")
 
