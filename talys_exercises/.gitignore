@@ -1,0 +1,7 @@
+# Ignore everything
+/*
+!/.gitignore
+
+# Un-ignore the affected subdirectory
+!/ex3/
+!/ex3/*/*

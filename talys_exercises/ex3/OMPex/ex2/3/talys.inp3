@@ -1,0 +1,43 @@
+# optical model calculation only
+#
+###########
+omponly y
+###########
+#
+projectile n
+element    U
+mass       238
+Ltarget    0
+energy     energies
+#
+#
+outbasic y
+channels y
+filechannels y
+filetotal     y
+outdiscrete   y
+elow 0.0001
+outpopulation       n
+outlevels           n
+outdensity          n
+outspectra          n
+outangle            n
+fileelastic         y
+#
+#ECIS                                                                      
+ecissave y                                                                      
+#                                                                               
+eciscalc y                                                                      
+#                                                                               
+inccalc y                                                                       
+#                                                                               
+#                                                                               
+maxrot  10                                                                       
+maxband 3                                                                       
+localomp n                                                                      
+#                                                                               
+rotational n                                                                
+#                                                                               
+                        
+                                                                           
+deformfile 92 defpar3

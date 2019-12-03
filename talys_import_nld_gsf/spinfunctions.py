@@ -136,6 +136,6 @@ def call_model(fun,pars,pars_req):
 
     # Check if required parameters are a subset of all pars given
     if pars_req <= set(pars):
-        return fun(**pars)
+        return fun(**pars_req)
     else:
         raise TypeError("Error: Need following arguments for this method: {0}".format(pars_req))
