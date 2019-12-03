@@ -11,9 +11,12 @@ You can now easily read this data, see `extract.py` script.
 Read the data to a `pd.Dataframe`
 
 ``` py
+widths = np.array([0, 15, 28, 41, 54, 57, 82, 85, 95, 104])
+widths = np.diff(widths)
 names = ["x", "dx", "y", "dy", "#1",
          "year, auth", "#2", "id", "com"]
-data = pd.read_fwf("X4_exp.txt", skiprows=11, skipfooter=2, names=names)
+data = pd.read_fwf("X4_exp.txt", width=widths,
+                   skiprows=11, skipfooter=2, names=names)
 data.drop(columns=["#1", "#2"])
 ```
 
