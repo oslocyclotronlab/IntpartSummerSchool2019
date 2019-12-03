@@ -17,7 +17,7 @@ try:
 except FileExistsError:
     pass
 
-nfigs = int(len(df)/5)
+nfigs = int(np.ceil(len(df)/5))
 fig, axes = plt.subplots(nfigs, 1)
 marker = itertools.cycle(('>', '+', '<', 'o', '*'))
 for i, (name, group) in enumerate(df):
