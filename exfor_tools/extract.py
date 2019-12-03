@@ -21,7 +21,7 @@ nfigs = int(np.ceil(len(df)/5))
 fig, axes = plt.subplots(nfigs, 1)
 marker = itertools.cycle(('>', '+', '<', 'o', '*'))
 for i, (name, group) in enumerate(df):
-    ax = axes[i % nfigs]
+    ax = axes[i % nfigs] if nfigs > 0 else axes
     ax.errorbar(group["x"], group["y"], yerr=group["dy"], label=name, fmt="o",
                 alpha=0.5, markerfacecolor="None",
                 markersize=2, marker=next(marker))
