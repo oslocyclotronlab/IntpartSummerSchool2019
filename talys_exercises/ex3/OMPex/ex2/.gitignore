@@ -6,6 +6,8 @@
 
 # # if the files to be tracked are in subdirectories
 !*/talys*
+!*/out*
+!*/total*
 !*/defpar*
 !*/energies*
 !exp/*
