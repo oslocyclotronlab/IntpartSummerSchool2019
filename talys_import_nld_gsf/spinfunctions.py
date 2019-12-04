@@ -20,9 +20,9 @@ class SpinFunctions:
             Additional parameters necessary for the spin cut model
     """
 
-    def __init__(self, Ex, J, model, pars):
+    def __init__(self, Ex, J=None, model=None, pars=None):
         self.Ex = np.atleast_1d(Ex)
-        self.J = np.atleast_1d(J)
+        self.J = np.atleast_1d(J) if J is not None else None
         self.model = model
         self.pars = pars
 
@@ -31,6 +31,8 @@ class SpinFunctions:
         Ex = self.Ex
         model = self.model
         pars = self.pars
+
+        assert model is not None and pars is not None
 
         # different spin cut models
         def EB05(mass, NLDa, Eshift, Ex=Ex):
@@ -86,12 +88,13 @@ class SpinFunctions:
             """
             Ex = np.atleast_1d(Ex)
             sigma2_Sn = EB05(mass, NLDa, Eshift, Ex=Sn)
+            sigma2_EB05 = lambda Ex: EB05(mass, NLDa, Eshift, Ex=Ex)
             x = [sigma2_disc[0], Sn]
-            y = [sigma2_disc[1], sigma2_Sn]
-            sigma2 = interp1d(x,y,
+            y = [sigma2_disc[1], sigma2_EB05(Sn)]
+            sigma2 = interp1d(x, y,
                               bounds_error=False,
-                              fill_value=(sigma2_disc[1],"extrapolate"))
-            return sigma2(Ex)
+                              fill_value=(sigma2_disc[1], sigma2_Sn))
+            return np.where(Ex < Sn, sigma2(Ex), sigma2_EB05(Ex))
 
         if model == "EB05":
             pars_req = {"mass", "NLDa", "Eshift"}
@@ -120,8 +123,8 @@ class SpinFunctions:
           Spin distribution. Shape depends on input Ex and J and is squeezed
           if only one of them is an array. If both are arrays: spinDist[Ex,J]
         """
-        Ex = self.Ex
         J = self.J
+        assert J is not None
 
         sigma2 = self.get_sigma2()
         sigma2 = sigma2[np.newaxis]  # ability to transpose "1D" array
@@ -131,11 +134,12 @@ class SpinFunctions:
         return np.squeeze(spinDist)  # return 1D if Ex or J is single entry
 
 
-def call_model(fun,pars,pars_req):
+def call_model(fun, pars, pars_req):
     """ Call `fun` and check if all required parameters are provided """
 
     # Check if required parameters are a subset of all pars given
     if pars_req <= set(pars):
-        return fun(**pars_req)
+        pcall = {p: pars[p] for p in pars_req}
+        return fun(**pcall)
     else:
         raise TypeError("Error: Need following arguments for this method: {0}".format(pars_req))

@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 from spinfunctions import SpinFunctions
 
+
 def talys_Egrid():
     ex_binning = np.zeros((6, 2)) # format: [Nbins_cum, binwidth]
     ex_binning[0, :] = [19+1, 0.25]  # 0.25 MeV from Ex=0.25 - 5.00 MeV,i=0-19
@@ -31,6 +32,7 @@ def talys_Egrid():
         E = np.append(E, np.arange(start=1, stop=N+1)*binwidth + Estart)
     return E
 
+
 def log_interp1d(xx, yy, **kwargs):
     """ Interpolate a 1-D function.logarithmically """
     logy = np.log(yy)
@@ -38,7 +40,8 @@ def log_interp1d(xx, yy, **kwargs):
     log_interp = lambda zz: np.exp(lin_interp(zz))
     return log_interp
 
-def gen_nld_table(fnld, Estop, model, spinpars):
+
+def gen_nld_table(fnld, Estop, model, spinpars, A):
     """ Generates talys-style table from a total nld and spin model
 
     Args:
@@ -58,7 +61,7 @@ def gen_nld_table(fnld, Estop, model, spinpars):
     """
     # prepare NLD
     E = talys_Egrid()
-    iSn = np.searchsorted(E, Sn+dE) + 1  # take right side
+    iSn = np.searchsorted(E, Estop) + 1  # take right side
     E = E[:iSn+1]
 
     Js = np.arange(0, 30)  # 0 to stop-1
@@ -71,13 +74,17 @@ def gen_nld_table(fnld, Estop, model, spinpars):
     T_dummy = np.full_like(E, 0.5)
 
     nld = fnld(E)
-    # print(np.c_[E, nld*spindist])
     out = np.column_stack((E, T_dummy, np.cumsum(nld),
                            nld, nld))
     nld_per_J = nld[:, np.newaxis]*spindist
     assert(np.allclose(nld, nld_per_J.sum(axis=1))), "Must have stacked badly"
     out = np.c_[out, nld_per_J]
     return out
+
+
+def sigma2(Ex, model, pars):
+    """ wrapper for spincut from SpinFunctions"""
+    return SpinFunctions(Ex, model=model, pars=pars).get_sigma2()
 
 
 if __name__ == "__main__":
