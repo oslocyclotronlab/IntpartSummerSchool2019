@@ -1,0 +1,381 @@
+%\documentclass[handout]{beamer}
+
+\documentclass{beamer}
+
+%\usepackage{pgfpages}
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
+
+\usepackage{etex}
+ 
+ 
+%\usepackage[ngerman, american, british]{babel} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} %%% latin input
+%\DeclareUnicodeCharacter{00A0}{ }
+
+%\usepackage{default}
+\usetheme{Warsaw}
+%\usepackage{authblk}
+\usepackage{multicol}
+%\usepackage[style=numeric,backend=biber]{biblatex}
+% %\usepackage[style=numeric]{biblatex}
+%\addbibresource{../bib.bib}
+%\AtEveryCitekey{%
+%\clearfield{title}%
+%\clearfield{pagetotal}%
+%}
+% Make bracketized
+%\renewcommand*{\thefootnote}{[\arabic{footnote}]}
+%\makeatletter
+% Remove superscript for footnotemark
+%\def\@makefnmark{\hbox{{\normalfont\@thefnmark}}}
+% Allow space to precede the footnote
+%\usepackage{etoolbox}
+%\patchcmd{\blx@mkbibfootnote}{\unspace}{}{}
+%\makeatother
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+
+\usepackage{textpos}
+\usepackage[percent]{overpic}
+\usepackage{adjustbox}
+
+\newcommand{\PreLim}
+{\begin{tikzpicture}
+% \node [opacity=0.1,rotate around={45:(0,0)}] (0,0) {\scalebox{2.0}{\textcolor{green}{Preliminary}}};
+\end{tikzpicture}}
+\newcommand{\PreLimP}{\put (50,0) {\PreLim}}
+  
+%\usepackage[printwatermark]{xwatermark}
+%\newwatermark*[allpages,color=red!50,angle=45,scale=2,xpos=0,ypos=0]{DRAFT}
+
+%\usepackage{struktex} %%% create structograms
+\usepackage{booktabs} %%% scientific publication style tables
+\usepackage{empheq}   %%% for boxed equations and alike
+\usepackage{xcolor}   %%% for colored text and formulae
+\usepackage{amsmath}  %%% math symbols needed
+\usepackage{amsfonts} %%% math fonts needed
+\usepackage{amssymb}  %%% maths symbols needed 
+\usepackage{amsthm}   %%% theorem environments
+%\usepackage{dsfont}   %%% for blackboard numbers and characters 
+%\usepackage{mathrsfs} %%% fonts when speaking e.g. about Lagrangian density
+%\usepackage{mathdots/mathdots}
+\usepackage{pdfpages}
+\usepackage{multirow} %%% merge rows in a table
+
+% Default graphics paths
+\graphicspath{{figs/}}
+
+%use of ps ticks
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+\usepackage{pgf,tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc}
+\usetikzlibrary{tikzmark} % remember position for later
+
+\ifx\du\undefined
+  \newlength{\du}
+\fi
+\setlength{\du}{15\unitlength}
+
+%\usepackage{fancybox} %%% more types of boxes 
+
+%\usepackage[pdftex]{graphicx}       %%% CUSTOMIZATION: include all pictures
+%\usepackage[draft]{graphicx} %%% choose draft option for faster compiling without pictures
+%\graphicspath{{Figures/}}      %%% all pictures will reside there and in subdirs
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% acronym and notation section
+%%% comment/delete this section, if you do not want to use these
+%\usepackage[toc,style=list,acronym=true]{glossary} %%% this package has to go AFTER the hyperref package!
+%\setacronymnamefmt{\gloshort}
+%\setacronymdescfmt{\glolong}
+%\input{Misc/acronyms-definitions.tex}
+%\makeacronym
+%
+%\newglossarytype{notation}{not}{ntn}[style=list]
+%\newcommand{\notationname}{Notation}
+%\setglossary{type=notation,glsnumformat=ignore,glodelim={.}}
+%\makenotation
+%%% end of acronuyms and notation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\FourQuad[4]{%
+    \begin{minipage}[b][.35\textheight][t]{.47\textwidth}#1\end{minipage}\vrule  \hfill%
+    \begin{minipage}[b][.35\textheight][t]{.47\textwidth}#2\end{minipage} \\[0.25em]
+    \hrule \hspace{0.001cm} \\[0.25em]
+    \begin{minipage}[b][.35\textheight][t]{.47\textwidth}#3\end{minipage}\vrule \hfill
+    \begin{minipage}[b][.35\textheight][t]{.47\textwidth}#4\end{minipage}%
+    }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Selection of the fonts!! 
+\usepackage[T1]{fontenc}
+%\usepackage{helvet}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment<>{varblock}[2][.9\textwidth]{%
+  \setlength{\textwidth}{#1}
+  \begin{actionenv}#3%
+    \def\insertblocktitle{#2}%
+    \par%
+    \usebeamertemplate{block begin}}
+  {\par%
+    \usebeamertemplate{block end}%
+  \end{actionenv}}
+
+
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,shapes}
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+
+% By default all math in TikZ nodes are set in inline mode. Change this to
+% displaystyle so that we don't get small fractions.
+\everymath{\displaystyle}
+
+\setbeamercovered{transparent}
+
+
+
+\title[Talys examples -- 4 (Wednesday)] % (optional, only for long titles)
+{Introduction into the usage of TALYS -- VI}
+\subtitle{Oslo-Berkeley-Stellenbosch-iThemba Summer School 2019}
+
+\author[F. Zeiser]{}
+
+%\date[12th September 2016] % (optional)
+%{ND2016, Brugge}
+%\subject{Computer Science}r}
+
+
+
+%%%%%%%%%%%%%%%
+%\usepackage[left=1.00in, right=1.00in, top=1.00in, bottom=1.00in]{geometry}
+\usepackage{xpatch}
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,skins,listings}
+
+\tcbset{
+        enhanced,
+        boxrule=0.0pt,
+        %fonttitle=\bfseries
+       }
+
+\newtcblisting{bashcodebg}[1][]{
+    listing engine=minted,
+    colback=bashcodebg,
+    colframe=black!70,
+    listing only,
+    minted style=colorful,
+    minted language=bash,
+    minted options={linenos=true,numbersep=3mm,texcl=true,breaklines,#1},
+    left=5mm,enhanced,
+    overlay={\begin{tcbclipinterior}\fill[black!25] (frame.south west)
+            rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}
+}
+
+\newtcblisting{bashcodebg2}[1][]{
+    listing engine=minted,
+    colback=bashcodebg,
+    colframe=black!70,
+    listing only,
+    minted style=colorful,
+    minted language=bash,
+    minted options={linenos=false,numbersep=3mm,texcl=false,#1,xrightmargin=0.5\textwidth},
+    left=0mm,enhanced,
+    %overlay={\begin{tcbclipinterior}\fill[black!25] (frame.south west)
+    %        rectangle (frame.north west);\end{tcbclipinterior}}
+}
+
+\definecolor{bashcodebg}{rgb}{0.85,0.85,0.85}
+
+%%%%%%
+
+\newlength{\mintedfboxsep}
+\setlength{\mintedfboxsep}{0.2pt}
+
+\newmintinline{python}{python3, framesep=0.1pt,bgcolor=bashcodebg}
+
+\makeatletter
+\newlength{\fboxrsep}
+\setlength{\fboxrsep}{\fboxsep}
+
+\newlength{\fboxlsep}
+\setlength{\fboxlsep}{\fboxsep}
+
+\newlength{\fboxtsep}
+\setlength{\fboxtsep}{\fboxsep}
+
+\newlength{\fboxbsep}
+\setlength{\fboxbsep}{\mintedfboxsep}
+
+\xpatchcmd{\minted@inputpyg@inline}{%
+  \colorbox%
+}{%
+  \long\def\color@b@x##1##2##3%
+  {\leavevmode
+    \setbox\z@\hbox{\kern\fboxlsep{\set@color##3}\kern\fboxrsep}%
+    \dimen@\ht\z@\advance\dimen@\fboxtsep\ht\z@\dimen@
+    \dimen@\dp\z@\advance\dimen@\fboxbsep\dp\z@\dimen@
+    {##1{##2\color@block{\wd\z@}{\ht\z@}{\dp\z@}\box\z@}}}%
+  \colorbox%
+}{\typeout{Success}}{\typeout{Failure}}
+\makeatother
+
+%%%%%%%
+
+
+
+%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Task}
+\tiny
+You want to calculate the cross-sections for 191Os(n,$\gamma$) and 191Os(n,tot). With a 15days half-life it's difficult to make a target out of 191Os, thus there is no tabulated data on $D_0$ and $\langle \Gamma_\gamma \rangle$ in Talys.
+\begin{itemize}
+	\item Assume that you have obtained a $D_0$ of 4.13(20) eV and $\langle \Gamma_\gamma \rangle$ of 0.049(20) eV from your magic systematics\footnote{\tiny These are arb. chosen here!}. Renormalize the NLD and $\gamma$SF to match these values.
+	\item For the nld and gsf, choose (a) an empirical and (b) a semi-microscopic model.
+	\item Compare the default and renormalized NLD(s) and $\gamma$SF(s) and their impact in the cross-sections. Choose sensible regions for the incident particle energies and the cross-sections.
+	\item Pick one of the above options and study the effect of the neutron-nucleus OMP on both cross-sections by modifying the depth of the real and imaginary potentials. \textit{Before} you start: What do you expect? \\ Visualize the results and explain the behavior.
+\end{itemize}
+
+Tips:
+\begin{itemize}
+	\item To modify NLDs you may modify/use the keywords \pythoninline{a},  \pythoninline{T}, and  \pythoninline{E0}, or for tabulated NLDs: \pythoninline{ctable} and  \pythoninline{ptable}
+	\item For most parameters \pythoninline{p} here a scaling keyword \pythoninline{padjust} exists. It will work like $p_{new} = p *  padjust$
+	\item To modify the $\gamma$SF you may modify/use the keywords like \pythoninline{egr} (...), or for tabulated gsfs: \pythoninline{etable} and  \pythoninline{ftable}
+	\item To renormalize the $\gamma$SF $f$ you can alternatively scale it by $f_\mathrm{new} = f_\mathrm{org} * \pythoninline{gnorm}$.\\
+	Attention: If exp. data on $\langle \Gamma_\gamma \rangle$is available, and you don't specify \pythoninline{gnorm 1.}, the $\gamma$SF is automatically scaled to match $\langle \Gamma_\gamma \rangle$.
+	\item The real and imaginary well-depth can be scaled by  \pythoninline{v1adjust} and  \pythoninline{w1adjust}.
+	\item Annotated output file on the next slides (reminder)
+\end{itemize}
+
+
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}[fragile]{Information on $a$ and $D_0$}
+	
+	Investigation of the output file: Default; output with \pythoninline{outdensity y}
+	
+	\begin{adjustbox}{minipage=1.2\textwidth,margin=0pt \smallskipamount,center}
+		% WORKAROUND
+		\begingroup % WORKAROUND
+		\catcode`\!=\active   % WORKAROUND
+		\def!#1!{\setlength{\fboxsep}{0pt}\colorbox{yellow!60}{#1}}  % WORKAROUND
+		\def¤#1¤{\setlength{\fboxsep}{0pt}\colorbox{black!30}{[...]}}  % WORKAROUND
+		%\defø#1ø{\colorbox{green!06}{\color{black!40} #1}}  % WORKAROUND
+		\defø#1ø{\setlength{\fboxsep}{0pt}\colorbox{green!06}{\color{black!40} #1}}
+		\begin{tiny}
+			\begin{bashcodebg}[escapeinside=||]
+|¤¤|
+Level density parameters for Z= 76 N=116 |!(192Os)!| 
+
+Model: Gilbert-Cameron          
+Collective enhancement: no
+
+a(Sn)           :  22.22718									  |øa for the phenom. modelø|
+Experimental D0 :              0.00 eV +-         0.00000     |øExperimental= RIPL-2ø| 
+Theoretical D0  :              3.45 eV                        |øTheor.= TALYS calc ø|
+Asymptotic a    :  22.70807
+Damping gamma   :   0.07507
+Pairing energy  :   1.73205
+Shell correction:  -0.34826
+Last disc. level:        10
+Nlow            :         4
+Ntop            :        17
+Matching Ex     :   6.03773
+Temperature     :   0.51816
+E0              :   0.00483
+Adj. pair shift :   0.00000
+Discrete sigma  :   3.60794
+Sigma (Sn)      :   6.67144
+|¤¤|
+Ex     a    sigma   total   JP=  0.0  JP=  1.0  JP=  2.0  JP=  3.0  |¤¤|
+
+0.25 22.114  3.608 1.549E+00 5.892E-02 1.637E-01 2.340E-01 2.|¤¤|
+|¤¤|
+			\end{bashcodebg}
+		\end{tiny}
+		\endgroup
+	\end{adjustbox}
+	
+\end{frame}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%
+
+
+\begin{frame}[fragile]{Information on D0 and $\gamma$SF}
+	
+	Investigation of the output file: Default; output with \pythoninline{outgamma y}
+	
+	\begin{adjustbox}{minipage=1.2\textwidth,margin=0pt \smallskipamount,center}
+		% WORKAROUND
+		\begingroup % WORKAROUND
+		\catcode`\!=\active   % WORKAROUND
+		\def!#1!{\setlength{\fboxsep}{0pt}\colorbox{yellow!60}{#1}}  % WORKAROUND
+		\def¤#1¤{\setlength{\fboxsep}{0pt}\colorbox{black!30}{[...]}}  % WORKAROUND
+		%\defø#1ø{\colorbox{green!06}{\color{black!40} #1}}  % WORKAROUND
+		\defø#1ø{\setlength{\fboxsep}{0pt}\colorbox{green!06}{\color{black!40} #1}}
+		\begin{tiny}
+			\begin{bashcodebg}[escapeinside=||]
+|¤¤|
+########## GAMMA STRENGTH FUNCTIONS, TRANSMISSION COEFFICIENTS AND CROSS SECTIONS ##########
+Gamma-ray information for Z= 76 N=116 (192Os) 
+
+S-wave strength function parameters:
+ |øExperimental= RIPL-2ø|                                 |øTheor.= TALYS calc; doesn't regard gnorm ø|
+Exp. total radiative width=   0.08450 eV +/- 0.00000 Theor. total radiative width=        0.02039 eV
+Exp. D0                   =      0.00 eV +/-    0.00 Theor. D0                   =        3.44583 eV
+Theor. S-wave strength f. =  59.17388E-4
+Normalization factor      =   1.00000
+
+Gamma-ray strength function model for E1: Kopecky-Uhl              
+
+Gamma-ray strength function model for M1: RIPL-2                   
+
+Normalized gamma-ray strength functions and transmission coefficients for l= 1
+
+Giant resonance parameters :
+
+sigma0(M1) =   0.860       sigma0(E1) = 206.000 and  389.000    PR: sigma0(M1) =   0.000       sigma0(E1) =   0.00
+|¤¤|
+
+E       f(M1)        f(E1)        T(M1)        T(E1)
+
+0.001  0.00000E+00  1.02591E-08  0.00000E+00  2.85769E-16
+0.002  9.35634E-13  1.02584E-08  4.70301E-20  2.28630E-15
+|¤¤|
+			\end{bashcodebg}
+		\end{tiny}
+		\endgroup
+	\end{adjustbox}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%
+
+\end{document}
