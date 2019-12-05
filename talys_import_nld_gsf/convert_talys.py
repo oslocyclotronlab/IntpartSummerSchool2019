@@ -147,7 +147,7 @@ if __name__ == "__main__":
     fig, ax = plt.subplots()
     ax.semilogy(Egsf_out, fE1(Egsf_out), label="E1")
     ax.semilogy(Egsf_out, fM1(Egsf_out), "--", label="M1")
-    ax.axvspan(Sn, Egsf_out[-1], alpha=0.1, label="extrapolation")
+    ax.axvspan(Egsf[-1], Egsf_out[-1], alpha=0.1, label="extrapolation")
 
     try:
         talys_out = np.loadtxt("data/talys_output.txt", skiprows=2)
