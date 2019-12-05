@@ -13,11 +13,24 @@ Here we give an example on how to convert *arbirary* nld and gsf to fileformats 
   M1file 94 240 path/to/gsfM1.dat
   gnorm 1.
   ```
+- If you don't have values for the gsf above a certain energy `Estop`, the
+  script provided here will extrapolate the values above `Estop` up to 30 MeV
+  (needed by talys). So don't trust (n,g) [...] calculations with `En > Estop
+  Sn`. If you want to have calcs for higher energies, extend the input table).
+
 - For the nlds, you it will be a bit more *hacky*:
   - Find the nld file for your nucleus, somewhere like
     `/talys/structure/density/ground/goriely/Pu.tab`. Make a backup of it.
-  - Exchange the section of the table for the final nucleus of interest with the section in
-    `nld_totalys.txt`.
+  - Exchange *the section* of the table for the final nucleus of interest with the section in
+    `nld_totalys.txt`. Note further that:
+    - The total format of the table has to be uncanged: It needs to have the
+      same number of excitations energies (->#rows) and Js (#-> columns). If
+      you create a table up to 10 MeV, only replace the section up to 10 MeV.
+    - If you replace the seciton only up to `Estop = 10 MeV`, remember that you will use
+      the default NLD values for `Ex > 10 MeV`. You can only trust (n,g)
+      calculations up to `En = Estop - Sn`. (If you want to have calcs for higher
+      energies, extend the input table).
+
   - To use them in talys, select `ldmode 4` (corresponds to the `goriely` folder) **and**
     specify explicity, that these number shall not be changed with `ptable` and `ctable`:
     ```
@@ -74,3 +87,5 @@ Here we give an example on how to convert *arbirary* nld and gsf to fileformats 
      0.020  6.38832E-11  1.02555E-08  3.21112E-15  5.15500E-13
      [...]
    ```
+
+There was a bug in some versions of talys 1.9. *If* the `f(E1)` column is filled with zeros, replace `gammapar.f` in the talys folder with the one provided here in `data/` and recompile.
