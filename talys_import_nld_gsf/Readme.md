@@ -73,7 +73,8 @@ Here we give an example on how to convert *arbirary* nld and gsf to fileformats 
    [...]
    ```
 
-   and the gsf (now in units of 1/MeV^3 again, not mb/MeV)
+   and the gsf (now in units of 1/MeV^3 again, not mb/MeV). To convert, use
+   `factor_from_mb = 8.6737E-08   # const. factor in mb^(-1) MeV^(-2)` [or use the plotting from `convert_talys.py` which will do it for you].
 
   ```
    ########## GAMMA STRENGTH FUNCTIONS, [...]##########
