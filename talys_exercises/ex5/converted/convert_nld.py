@@ -37,9 +37,11 @@ print("Rembember to  overwrite part of the table in"
       f"generated nld file: {fn_nld_out}")
 
 fig, ax = plt.subplots()
-ax.semilogy(nld[:, 0], nld[:, 1], label="nld tot")
+ax.semilogy(nld[:, 0], nld[:, 1], "o", label="nld tot, input")
+ax.semilogy(table[:, 0], table[:, 4], label="nld tot_talys")
 ax.set_xlabel("Ex [MeV]")
 ax.set_ylabel("NLD [1/MeV]")
+ax.legend()
 
 fig, ax = plt.subplots()
 ax.plot(nld[:, 0], np.sqrt(sigma2(nld[:, 0], model, spinpars)),
