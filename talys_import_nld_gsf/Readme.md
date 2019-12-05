@@ -55,7 +55,7 @@ Here we give an example on how to convert *arbirary* nld and gsf to fileformats 
   outdensity y
   outgamma y
   ```
-  Then you might want to copy out and plot the nld and gsfs that talys uses. It's in the output file somewhere like
+  Then you might want to copy out and plot the nld and gsfs that talys uses. It's in the output file somewhere like. Check whether the output says *Level density per parity*. If so, to get the total NLD for plotting, multiply it by 2.
   ```
 
   Level density parameters for Z= 94 N=146 (240Pu)

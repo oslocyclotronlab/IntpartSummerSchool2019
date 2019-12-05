@@ -91,6 +91,7 @@ if __name__ == "__main__":
     # Constants for the spin distribution / NLD
     Sn = 6.534
     dE = 1  # extend the model used with the Oslo data a little further
+    Estop = Sn+dE
     A = 240
     Z = 94
     # From EB05 for this nucleus
@@ -100,11 +101,28 @@ if __name__ == "__main__":
     fn_nld = "data/nld_new.txt"
     fn_nld_out = "data/nld_totalys.txt"
     nld = np.loadtxt(fn_nld)
-    fnld = log_interp1d(nld[:, 0], nld[:, 1], fill_value="extrapolate")
+
+    # If you comment out extrapolation below, it will do a log-linear
+    # extraolation of the last two points. This is probably not what you want.
+    # fnld = log_interp1d(nld[:, 0], nld[:, 1], fill_value="extrapolate")
+    fnld = log_interp1d(nld[:, 0], nld[:, 1])
+
     # print(f"Below {nld[0, 0]} the nld is just an extrapolation
     #       "Best will be to use discrete levels in talys below that")
-    table = gen_nld_table(fnld=fnld, Estop=Sn+dE, model="EB05",
-                          spinpars=spinpars, A=A)
+    try:
+        table = gen_nld_table(fnld=fnld, Estop=Estop, model="EB05",
+                              spinpars=spinpars, A=A)
+    except ValueError as e:
+        print(str(e))
+        if str(e) == "A value in x_new is below the interpolation range.":
+            raise ValueError("The last values in the data are below "
+                             f"Estop={Estop} if you really want to get "
+                             "the data in talys format so far you need to"
+                             "use an extrapolation.")
+            raise
+        else:
+            raise
+
 
     fmt = "%7.2f %6.3f %9.2E %8.2E %8.2E " + 30*" %8.2E"
     header = "U[MeV]  T[MeV]  NCUMUL   RHOOBS   RHOTOT     J=0      J=1      J=2      J=3      J=4      J=5      J=6      J=7      J=8      J=9     J=10     J=11     J=12     J=13     J=14     J=15     J=16     J=17     J=18     J=19     J=20     J=21     J=22     J=23     J=24     J=25     J=26     J=27     J=28     J=29"

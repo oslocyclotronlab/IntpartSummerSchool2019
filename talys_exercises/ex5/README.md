@@ -10,3 +10,8 @@ DOI: https://doi.org/10.1103/physrevc.99.065806
 
 See followink link on how you can input "user-defined" nld and gsf to talys:
 [talys_import_nld_gsf](../../talys_import_nld_gsf)
+
+
+There is two folders:
+- `converted` contains the original scripts
+- `converted_corrected` contains the corrected script, where I took into account the same extrapolation as in the acticle
