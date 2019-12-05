@@ -1,0 +1,26 @@
+#
+# General
+#
+projectile n
+element Os
+mass 191
+energy n0-15.grid
+
+astro y
+#
+# Output
+#
+E1file 76 192 gsfE1.dat
+M1file 76 192 gsfM1.dat
+gnorm 1
+#
+ldmodel 4
+ptable 76 192 0.0
+ctable 76 192 0.0
+Nlevels 76 192 40
+#
+outbasic y
+outomp y
+outlevels y
+outdensity y
+outgamma y
