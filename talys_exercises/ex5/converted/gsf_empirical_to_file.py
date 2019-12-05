@@ -29,7 +29,7 @@ def GLO(E, E0, Gamma0, sigma0, T):
 
 # Constants
 Sn = 7.558
-A = 191
+A = 192
 Z = 76
 
 # parameters

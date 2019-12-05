@@ -11,7 +11,7 @@ from convert_talys import gen_nld_table, sigma2, log_interp1d
 # Constants for the spin distribution / NLD
 Sn = 7.558
 dE = 1  # extend the model used with the Oslo data a little further
-A = 191
+A = 192
 Z = 76
 # From mixture between discretes and EB05 for this nucleus
 model = "Disc_and_EB05"
