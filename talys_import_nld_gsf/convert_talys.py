@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # print(f"Below {nld[0, 0]} the nld is just an extrapolation
     #       "Best will be to use discrete levels in talys below that")
     table = gen_nld_table(fnld=fnld, Estop=Sn+dE, model="EB05",
-                          spinpars=spinpars)
+                          spinpars=spinpars, A=A)
 
     fmt = "%7.2f %6.3f %9.2E %8.2E %8.2E " + 30*" %8.2E"
     header = "U[MeV]  T[MeV]  NCUMUL   RHOOBS   RHOTOT     J=0      J=1      J=2      J=3      J=4      J=5      J=6      J=7      J=8      J=9     J=10     J=11     J=12     J=13     J=14     J=15     J=16     J=17     J=18     J=19     J=20     J=21     J=22     J=23     J=24     J=25     J=26     J=27     J=28     J=29"
